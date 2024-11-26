@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>Поручения</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header>
+    Список поручений
+</header>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Тип поручения</th>
+        <th>Вид поручения</th>
+        <th>Валюта</th>
+        <th>Тикер</th>
+        <th>Номер</th>
+        <th>Дата</th>
+        <th>Длительность</th>
+        <th>Количество</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.orderType.type}"></td>
+        <td th:text="${order.orderVeriety.veriety}"></td>
+        <td th:text="${order.currency.currencyShort}"></td>
+        <td th:text="${order.tiker}"></td>
+        <td th:text="${order.number}"></td>
+        <td th:text="${order.data}"></td>
+        <td th:text="${order.duration}"></td>
+        <td th:text="${order.count}"></td>
+        <td>
+            <a th:href="@{'/orders/' + ${order.id} + '/edit'}">Редактировать</a>
+            <form th:action="@{'/orders/' + ${order.id} + '/delete'}" method="post" style="display:inline;">
+                <button type="submit">Удалить</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+<a href="/orders/new">Добавить новое поручение</a>
+
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header>
+    Список валют
+</header>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Полное</th>
+        <th>Короткое</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="currency : ${currencies}">
+        <td th:text="${currency.id}"></td>
+        <td th:text="${currency.currencyFull}"></td>
+        <td th:text="${currency.currencyShort}"></td>
+        <td>
+            <a th:href="@{'/currencies/' + ${currency.id} + '/edit'}">Редактировать</a>
+            <form th:action="@{'/currencies/' + ${currency.id} + '/delete'}" method="post" style="display:inline;">
+                <button type="submit">Удалить</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/currencies/new">Добавить новое поручение</a>
+</body>
+</html>

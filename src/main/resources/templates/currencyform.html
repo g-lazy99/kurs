@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header>
+    <h1></h1>
+    <p></p>
+</header>
+<h1 th:if="${currency != null and currency.id == null}">Добавить валюту</h1>
+<h1 th:if="${currency != null and currency.id != null}">Редактировать валюту</h1>
+<form th:action="@{/currencies}" th:object="${currency}" method="post">
+    <!-- Поля ввода для других данных -->
+    <label for="full">Полное:</label>
+    <input id="full" type="text" th:field="*{currencyFull}" required/>
+    <br/>
+
+
+    <label for="sh">Краткое:</label>
+    <input id="sh" type="text" th:field="*{currencyShort}" required/>
+    <br/>
+
+
+    <button type="submit">Сохранить</button>
+</form>
+<footer>
+</footer>
+</body>
+</html>

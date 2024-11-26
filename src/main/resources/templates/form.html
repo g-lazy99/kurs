@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header>
+  <h1></h1>
+  <p></p>
+</header>
+<h1 th:if="${order != null and order.id == null}">Добавить поручение</h1>
+<h1 th:if="${order != null and order.id != null}">Редактировать поручение</h1>
+<form th:action="@{/orders}" th:object="${order}" method="post">
+  <input type="hidden" th:if="${order.id != null}" th:field="*{id}" />
+  <label for="orderType">Тип поручения:</label>
+  <select id="orderType" th:field="*{orderType.id}">
+    <option value="" disabled selected>Выберите тип</option>
+    <option th:each="orderType : ${orderTypes}"
+            th:value="${orderType.id}"
+            th:text="${orderType.type}">
+    </option>
+  </select>
+  <br/>
+
+  <label for="orderVerity">Тип поручения:</label>
+  <select id="orderVerity" th:field="*{orderVeriety}">
+    <option value="" disabled selected>Выберите тип</option>
+    <option th:each="orderVeriety : ${orderVerity}" th:value="${orderVeriety.id}" th:text="${orderVeriety.veriety}"></option>
+  </select>
+  <br/>
+
+  <label for="orderCurrency">Валюта поручения:</label>
+  <select id="orderCurrency" th:field="*{currency}">
+    <option value="" disabled selected>Выберите тип</option>
+    <option th:each="orderCurrency : ${orderCurrency}" th:value="${orderCurrency.id}" th:text="${orderCurrency.currencyFull}"></option>
+  </select>
+  <br/>
+
+  <!-- Поля ввода для других данных -->
+  <label for="tiker">Тикер:</label>
+  <input id="tiker" type="text" th:field="*{tiker}" required/>
+  <br/>
+
+
+  <label for="number">Номер:</label>
+  <input id="number" type="number" th:field="*{number}" required/>
+  <br/>
+
+  <label for="data">Дата:</label>
+  <input id="data" type="datetime-local" th:field="*{data}" required/>
+  <br/>
+
+  <label for="duration">Длительность:</label>
+  <input id="duration" type="text" th:field="*{duration}" required/>
+  <br/>
+
+  <label for="count">Количество:</label>
+  <input id="count" type="number" th:field="*{count}" required/>
+  <br/>
+
+  <button type="submit">Сохранить</button>
+</form>
+<footer>
+</footer>
+</body>
+</html>
